@@ -3,9 +3,9 @@
     require 'vendor/autoload.php';
 
     function mysqlput($query) {
-        $dbservername = "193.192.100.78";
+        $dbservername = "ipaddr";
         $dbusername = "radius";
-        $dbpassword = "Boss!*vLa34";
+        $dbpassword = "passwd";
         $dbname = "radius";
         $connection = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
         return $connection->query($query);
