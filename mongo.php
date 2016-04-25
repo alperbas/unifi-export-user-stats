@@ -16,6 +16,7 @@
         $query = "SELECT $field FROM radacct WHERE '$field' = '$value'";
         $result = mysqlconn($query);
         $row = mysqli_fetch_assoc($result);
+        echo "row: ".$row[$field]."\n";
 
         if(is_null($row[$field])) {
             return 1;
