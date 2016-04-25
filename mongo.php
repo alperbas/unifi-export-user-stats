@@ -17,7 +17,7 @@
     }
 
     function mysqlcheck($field, $value) {
-        $query = "SELECT $field FROM radacct WHERE '$field' = '$value'";
+        $query = "SELECT $field FROM radacct WHERE $field = '$value'";
         $result = mysqlput($query);
         $row = mysqli_fetch_assoc($result);
         echo $query."\n";
