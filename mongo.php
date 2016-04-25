@@ -32,7 +32,7 @@
     function mysqlupdate ($mac) {
         $query = "UPDATE AuthInfo
                 LEFT JOIN radacct ON AuthInfo.macaddress = radacct.callingstationid
-                SET AuthInfo.sessionid = radacct.radacctid
+                SET AuthInfo.sessionid = radacct.acctuniqueid
                 WHERE AuthInfo.logintime > radacct.acctstarttime
                 AND AuthInfo.logintime < radacct.acctstoptime
                 AND AuthInfo.sessionid is null
