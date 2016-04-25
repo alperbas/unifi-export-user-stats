@@ -8,7 +8,12 @@
         $dbpassword = "Boss!*vLa34";
         $dbname = "radius";
         $connection = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
-        return $connection->query($query);
+        $result = $connection->query($query);
+        if (!$result) {
+            echo "Error executing query: (".$mysqli->errno.") ".$mysqli->error."\n";
+        } else {
+            return $result;
+        }
     }
 
     function mysqlcheck($field, $value) {
