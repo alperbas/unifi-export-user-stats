@@ -2,7 +2,7 @@
 
     require 'vendor/autoload.php';
 
-    function mysqlput($query) {
+    function mysqlconn($query) {
         $dbservername = "193.192.100.78";
         $dbusername = "radius";
         $dbpassword = "Boss!*vLa34";
@@ -14,15 +14,23 @@
     # in progress
     function mysqlcheck($field, $value) {
         $query = "SELECT $field FROM radacct WHERE '$field' = '$value'";
-        $result = mysqlput($query);
-        $row = mysqli_fetch_assoc($result);
-        #echo $row[$field]."\n";
+        $row = mysqli_fetch_assoc(mysqlconn($query));
 
         if(is_null($row[$field])) {
             return 1;
         } else {
             return 0;
         }
+    }
+
+    function mysqlupdate ($mac) {
+        $query = "UPDATE AuthInfo
+                LEFT JOIN radacct ON AuthInfo.macaddress = radacct.callingstationid
+                SET AuthInfo.sessionid = radacct.radacctid
+                WHERE AuthInfo.logintime > radacct.acctstarttime
+                AND AuthInfo.logintime < radacct.acctstoptime
+                AND radacct.callingstationid = '$mac';";
+        mysqlconn($query);
     }
 
     function mongoget() {
