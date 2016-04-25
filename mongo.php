@@ -14,7 +14,8 @@
     # in progress
     function mysqlcheck($field, $value) {
         $query = "SELECT $field FROM radacct WHERE '$field' = '$value'";
-        $row = mysqli_fetch_assoc(mysqlconn($query));
+        $result = mysqlconn($query);
+        $row = mysqli_fetch_assoc($result);
 
         if(is_null($row[$field])) {
             return 1;
