@@ -55,10 +55,11 @@
                 VALUES ('$acctuniqueid', '$acctsessionid', FROM_UNIXTIME('$acctstarttime'), FROM_UNIXTIME('$acctstoptime'), '$acctsessiontime', '$acctinputoctets', '$acctoutputoctets', '$calledstationid', '$callingstationid', '$framedipaddress')";
 
             if(mysqlcheck('acctuniqueid', $acctuniqueid)) {
-                echo "null\n";
-                mysqlput($insertquery);
+                echo $acctuniqueid." null\n";
+                mysqlconn($insertquery);
+                mysqlupdate($callingstationid);
             } else {
-                echo "notNull\n";
+                echo $acctuniqueid." notNull\n";
             }
         }
     }
