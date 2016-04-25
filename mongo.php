@@ -46,8 +46,10 @@
         $client = new MongoDB\Client("mongodb://localhost:27117");
         $collection = $client->ace_stat->stat_archive;
         #$result = $collection->find( [ 'mac' => '00:26:82:50:85:d4' ] );
+        # get all sessions from unifi
         $result = $collection->find();
 
+        # for each sesion in unifi
         foreach ($result as $entry) {
             $acctuniqueid = $entry['_id'];
             $acctsessionid = $entry['session'];
@@ -63,12 +65,12 @@
             $insertquery = "INSERT INTO radacct (acctuniqueid, acctsessionid, acctstarttime, acctstoptime, acctsessiontime, acctinputoctets, acctoutputoctets, calledstationid, callingstationid, framedipaddress)
                 VALUES ('$acctuniqueid', '$acctsessionid', FROM_UNIXTIME('$acctstarttime'), FROM_UNIXTIME('$acctstoptime'), '$acctsessiontime', '$acctinputoctets', '$acctoutputoctets', '$calledstationid', '$callingstationid', '$framedipaddress')";
 
+            # check if sesion exists in radius db
             if(mysqlcheck('acctuniqueid', $acctuniqueid)) {
-                echo $acctuniqueid." null\n";
-                #mysqlconn($insertquery);
+                # Insert session to radius.radacct table.
+                mysqlconn($insertquery);
+                # Update sessionID for captive portal login radius.AuthInfo table.
                 mysqlupdate($callingstationid);
-            } else {
-                echo $acctuniqueid." notNull\n";
             }
         }
     }
