@@ -34,6 +34,7 @@
                 AND AuthInfo.sessionid is null
                 AND radacct.callingstationid = '$mac';";
         mysqlput($query);
+        echo $mac." 'i update ettim.\n"
         return 1;
     }
 
@@ -60,7 +61,7 @@
 
             if(mysqlcheck('acctuniqueid', $acctuniqueid)) {
                 echo $acctuniqueid." null\n";
-                mysqlput($insertquery);
+                #mysqlput($insertquery);
                 mysqlupdate($callingstationid);
             } else {
                 echo $acctuniqueid." notNull\n";
