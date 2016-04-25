@@ -33,6 +33,7 @@
                 AND AuthInfo.sessionid is null
                 AND radacct.callingstationid = '$mac';";
         mysqlconn($query);
+        return 1;
     }
 
     function mongoget() {
