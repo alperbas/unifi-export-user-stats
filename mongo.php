@@ -2,7 +2,7 @@
 
     require 'vendor/autoload.php';
 
-    function mysqlconn($query) {
+    function mysqlput($query) {
         $dbservername = "193.192.100.78";
         $dbusername = "radius";
         $dbpassword = "Boss!*vLa34";
@@ -16,7 +16,7 @@
         $result = mysqlput($query);
         $row = mysqli_fetch_assoc($result);
         echo $query."\n";
-        echo "field: ".$field." value: ".$value." row: ".$row[$field]." or ".$row[]."\n";
+        echo "field: ".$field." value: ".$value." row: ".$row[$field]." or ".$row[0]."\n";
 
         if(is_null($row[$field])) {
             return 1;
@@ -33,7 +33,7 @@
                 AND AuthInfo.logintime < radacct.acctstoptime
                 AND AuthInfo.sessionid is null
                 AND radacct.callingstationid = '$mac';";
-        mysqlconn($query);
+        mysqlput($query);
         return 1;
     }
 
@@ -60,7 +60,7 @@
 
             if(mysqlcheck('acctuniqueid', $acctuniqueid)) {
                 echo $acctuniqueid." null\n";
-                mysqlconn($insertquery);
+                mysqlput($insertquery);
                 mysqlupdate($callingstationid);
             } else {
                 echo $acctuniqueid." notNull\n";
