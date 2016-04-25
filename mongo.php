@@ -11,12 +11,12 @@
         return $connection->query($query);
     }
 
-    # in progress
     function mysqlcheck($field, $value) {
         $query = "SELECT $field FROM radacct WHERE '$field' = '$value'";
         $result = mysqlconn($query);
         $row = mysqli_fetch_assoc($result);
-        echo "field: ".$field."value: ".$value."row: ".$row[$field]."\n";
+        echo $query."\n";
+        echo "field: ".$field." value: ".$value." row: ".$row[$field]."\n";
 
         if(is_null($row[$field])) {
             return 1;
