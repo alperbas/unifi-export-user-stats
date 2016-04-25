@@ -13,8 +13,8 @@
 
     function mysqlcheck($field, $value) {
         $query = "SELECT $field FROM radacct WHERE '$field' = '$value'";
-        $result = mysqlconn($query);
-        $row = mysqli_fetch_row($result);
+        $result = mysqlput($query);
+        $row = mysqli_fetch_assoc($result);
         echo $query."\n";
         echo "field: ".$field." value: ".$value." row: ".$row[$field]." or ".$row[]."\n";
 
