@@ -29,6 +29,7 @@
                 SET AuthInfo.sessionid = radacct.radacctid
                 WHERE AuthInfo.logintime > radacct.acctstarttime
                 AND AuthInfo.logintime < radacct.acctstoptime
+                AND AuthInfo.sessionid is null
                 AND radacct.callingstationid = '$mac';";
         mysqlconn($query);
     }
