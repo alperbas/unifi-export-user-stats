@@ -3,10 +3,12 @@
     require 'vendor/autoload.php';
 
     function mysqlconn($query) {
-        $dbservername = "193.192.100.78";
-        $dbusername = "radius";
-        $dbpassword = "Boss!*vLa34";
-        $dbname = "radius";
+        if(is_file('vars.php'))
+            include 'vars.php';
+        $dbservername = "IP";
+        $dbusername = "usrname";
+        $dbpassword = "passwd";
+        $dbname = "db";
         $connection = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
         $result = $connection->query($query);
         if (!$result) {
