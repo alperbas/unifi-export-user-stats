@@ -3,6 +3,7 @@
     require 'vendor/autoload.php';
 
     function mysqlconn($query) {
+        ## enter db info here or create vars.php 
         $dbservername = "IP";
         $dbusername = "usrname";
         $dbpassword = "passwd";
