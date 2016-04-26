@@ -3,11 +3,11 @@
     require 'vendor/autoload.php';
 
     function mysqlconn($query) {
-        ## enter db info here or create vars.php 
-        $dbservername = "IP";
-        $dbusername = "usrname";
-        $dbpassword = "passwd";
-        $dbname = "db";
+        ## enter db info here or create vars.php
+        $dbservername = "hostname";
+        $dbusername = "username";
+        $dbpassword = "password";
+        $dbname = "database";
         if(is_file('vars.php'))
             include 'vars.php';
         $connection = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
