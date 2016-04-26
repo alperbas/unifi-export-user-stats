@@ -41,7 +41,7 @@
                 AND AuthInfo.sessionid is null
                 AND radacct.callingstationid = '$mac';";
         mysqlconn($query);
-        echo $mac." 'i update ettim.\n";
+        #echo $mac." 'i update ettim.\n";
         return 1;
     }
 
