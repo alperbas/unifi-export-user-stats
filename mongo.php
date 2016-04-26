@@ -8,8 +8,8 @@
         $dbusername = "username";
         $dbpassword = "password";
         $dbname = "database";
-        if(is_file('vars.php'))
-            include 'vars.php';
+        if(is_file(dirname(__FILE__) . "/vars.php"))
+            include dirname(__FILE__) . "/vars.php";
         $connection = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
         $result = $connection->query($query);
         if (!$result) {
