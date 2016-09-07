@@ -2,6 +2,7 @@
 
     require 'vendor/autoload.php';
 
+    # bu bir fonksiyondur
     function mysqlconn($query) {
         ## enter db info here or create vars.php
         $dbservername = "hostname";
